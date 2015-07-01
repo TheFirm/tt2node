@@ -1,0 +1,21 @@
+{
+  "name": "tt2_node",
+  "version": "0.0.0",
+  "homepage": "https://github.com/TheFirm/tt2node",
+  "authors": [
+    "sheppard <vivchar.danylo@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.1",
+    "moment": "~2.10.3",
+    "bootstrap": "~3.3.5"
+  }
+}
