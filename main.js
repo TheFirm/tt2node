@@ -22,6 +22,7 @@ app.use(passport.session());
 app.set('view engine', 'jade');
 app.set('views', './views');
 app.use(express.static('public'));
+app.use('/bower_components',  express.static('bower_components'));
 
 var passportConfig = require("./passportInit")(passport, models)
     , routes = require("./routes")(app, passport, models, express);
