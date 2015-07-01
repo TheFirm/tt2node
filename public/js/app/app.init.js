@@ -1,1 +1,1 @@
-angular.module('tt2', []);
+angular.module('tt2', ['ui.bootstrap']);

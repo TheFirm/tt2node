@@ -41,7 +41,7 @@ module.exports = function (app, passport, models, express) {
     });
 
     router.get('/report', function (req, res) {
-        var page = parseIntOr(req.params['page'], 1);
+        var page = parseIntOr(req.query['page'], 1);
         models.Report.getByUser(req.session.passport.user.id, page).then(function (reports) {
             var json = reports.rows.map(function (report) {
                 var data = _.pick(report, 'id', 'create_at', 'date_report', 'time_start', 'time_end', 'comment');

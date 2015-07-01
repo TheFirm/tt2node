@@ -1,24 +1,27 @@
-<table class="table table-bordered table-hover table-striped">
-    <thead>
-    <tr>
-        <th>id</th>
-        <th>Project</th>
-        <th>Created</th>
-        <th>Report for</th>
-        <th>Time start</th>
-        <th>Time end</th>
-        <th>Comment</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="report in reports track by report.id">
-        <td ng-bind="report.id"></td>
-        <td ng-bind="report.project.name"></td>
-        <td ng-bind="report.create_at"></td>
-        <td ng-bind="report.date_report"></td>
-        <td ng-bind="report.time_start"></td>
-        <td ng-bind="report.time_end"></td>
-        <td ng-bind="report.comment"></td>
-    </tr>
-    </tbody>
-</table>
+<div>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Project</th>
+            <th>Created</th>
+            <th>Report for</th>
+            <th>Time start</th>
+            <th>Time end</th>
+            <th>Comment</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="report in reports track by report.id">
+            <td ng-bind="report.id"></td>
+            <td ng-bind="report.project.name"></td>
+            <td ng-bind="report.create_at"></td>
+            <td ng-bind="report.date_report"></td>
+            <td ng-bind="report.time_start"></td>
+            <td ng-bind="report.time_end"></td>
+            <td ng-bind="report.comment"></td>
+        </tr>
+        </tbody>
+    </table>
+    <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+</div>
