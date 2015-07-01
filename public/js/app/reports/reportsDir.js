@@ -7,6 +7,7 @@ angular.module('tt2').directive('ttReports', function () {
             $scope.totalItems = 10;
             $scope.reports = [];
 
+            //todo move to service
             var getReports = function () {
                 $http.get('api/report', {params:{page: $scope.currentPage}}).success(function (reports, status, headers) {
                     reports.forEach(function (report) {
