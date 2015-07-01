@@ -73,6 +73,6 @@ var fixtures = {
 models.sequelize.sync().then(function () {
     //fixtures.Project(10);
     //fixtures.Users(10);
-    fixtures.Reports(10);
+    fixtures.Reports(100);
 });
 

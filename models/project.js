@@ -8,6 +8,14 @@ module.exports = function(sequelize , DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+      },
+      getActive: function () {
+        return Project.findAll({
+          where: {
+            active: 1
+          },
+          limit: 300
+        });
       }
     },
     tableName: 'projects',

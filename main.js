@@ -3,23 +3,28 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     passport = require('passport'),
     session = require('express-session'),
+    FileStore = require('session-file-store')(session),
     config = require("./config2/config").c,
     models = require("./models")
-
     ;
 
 var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(session({secret: 'keyboard cat23'}));
+app.use(
+    session({
+        store: new FileStore(/*options*/),
+        secret: 'keyboard cat23'
+    })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 app.set('view engine', 'jade');
 app.set('views', './views');
+app.use(express.static('public'));
 
 var passportConfig = require("./passportInit")(passport, models)
-    ,routes = require("./routes")(app, passport);
-
+    , routes = require("./routes")(app, passport, models, express);
 
 
 //app.get('*', function(req, res, next) {

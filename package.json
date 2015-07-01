@@ -18,8 +18,8 @@
     "mysql": "^2.7.0",
     "passport": "^0.2.2",
     "passport-google-oauth": "^0.2.0",
-    "sequelize": "^2.0.0-rc1",
-    "sequelize-cli": "^1.7.0",
-    "sequelize-fixtures": "^0.4.5"
+    "sequelize": "^3.3.2",
+    "session-file-store": "0.0.14",
+    "underscore": "^1.8.3"
   }
 }

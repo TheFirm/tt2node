@@ -1,4 +1,6 @@
 'use strict';
+var Project = require("./project");
+
 module.exports = function(sequelize , DataTypes) {
   var Report = sequelize.define('Report', {
     id: DataTypes.INTEGER,
@@ -12,7 +14,31 @@ module.exports = function(sequelize , DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        this.models = models;
+        Report.belongsTo(models.Project, {foreignKey: 'project_id'/*, 'as': 'project'*/});
+        //models.Project.belongsTo(Report/*, {foreignKey: 'project_id', 'as': 'project'}*/);
+      },
+      LIMIT: 10,
+      getByUser: function (user_id, page) {
+        console.log(Project);
+        return Report.findAndCount({
+          where: {
+            user_id: user_id
+          },
+          order: [
+              ['create_at', 'DESC']
+          ],
+          limit: this.LIMIT,
+          offset: (page-1) * this.LIMIT || 0,
+          include: {
+            model: this.models.Project,
+            //as: 'project',
+            attributes: [
+              'id',
+              'name'
+            ]
+          }
+        });
       }
     },
     tableName: 'reports',

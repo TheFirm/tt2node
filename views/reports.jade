@@ -1,6 +1,19 @@
 html
-   head
-      title!= title
-   body
-      h1 Reports here!!!
-      a(href='/logout') logout
+    head
+        meta(charset='utf8')
+        title!= title
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/css/bootstrap-theme.min.css')
+        link(rel='stylesheet', href='/css/style.css')
+        //script(src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
+        script(src='/js/lib/angular.js')
+        script(src='/js/lib/moment.min.js')
+
+        script(src='/js/app/app.init.js')
+        script(src='/js/app/reports/reportsDir.js')
+    body(ng-app='tt2')
+        block content
+        h1 Reports here!!!
+        a(href='/logout') logout
+        div(class='col-md-10')
+            tt-reports
