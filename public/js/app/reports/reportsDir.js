@@ -23,11 +23,9 @@ angular.module('tt2').directive('ttReports', function () {
 
             getReports();
 
-
             $scope.pageChanged = function () {
                 getReports();
             };
-
 
         }
     }

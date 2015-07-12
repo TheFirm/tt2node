@@ -12,10 +12,14 @@ html
 
         script(src='/js/app/app.init.js')
         script(src='/js/app/reports/reportsDir.js')
+        script(src='/js/app/reportEdit/reportEditDir.js')
     body(ng-app='tt2')
         block contenta
         h1 Reports here!!!
-        a(href='/logout') logout
+        a(href='/api/auth/logout') logout
+
+        div(class='col-md-10')
+            tt-report-edit
 
         div(class='col-md-10')
             tt-reports

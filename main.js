@@ -1,4 +1,3 @@
-var i = 0;
 var express = require('express'),
     bodyParser = require('body-parser'),
     passport = require('passport'),
@@ -23,9 +22,10 @@ app.set('view engine', 'jade');
 app.set('views', './views');
 app.use(express.static('public'));
 app.use('/bower_components',  express.static('bower_components'));
-
-var passportConfig = require("./passportInit")(passport, models)
-    , routes = require("./routes")(app, passport, models, express);
+require("./passportInit");
+app.use('/', require('./controllers/'));
+//var passportConfig = require("./passportInit")(passport, models)
+//    , routes = require("./routes")(app, passport, models, express);
 
 
 //app.get('*', function(req, res, next) {
