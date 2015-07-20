@@ -1,5 +1,5 @@
 var _ = require('underscore');
-
+/* todo investigate file usage*/
 module.exports = function (app, passport, models, express) {
     app.get('/auth/google',
         passport.authenticate('google', {scope: [
@@ -14,7 +14,7 @@ module.exports = function (app, passport, models, express) {
 
     app.get('/', function (req, res) {
         if(req.session.passport.user && req.session.passport.user.id){
-            res.render('reports', {title: 'Hey', message: 'Hello there!'});
+            res.render('reports', {title: 'Hey routes', message: 'Hello there!'});
         } else {
             res.render('index', {title: 'Hey', message: 'Hello there!'});
         }

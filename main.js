@@ -12,7 +12,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(
     session({
-        store: new FileStore(/*options*/),
+        store: new FileStore({
+            path: './sessions'
+        }),
         secret: 'keyboard cat23'
     })
 );
@@ -66,7 +68,7 @@ app.use('/', require('./controllers/'));
 //    }
 //});
 
-
+console.log('Loading ...');
 models.sequelize.sync().then(function () {
     var server = app.listen(config.port, function () {
         console.log('Express server listening on port ' + config.port);

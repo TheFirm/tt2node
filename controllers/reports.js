@@ -11,19 +11,27 @@ function parseIntOr(val, defaultVal){
     !isNaN(parsed) ? parsed : defaultVal;
 }
 
-router.get('/', function (req, res) {
-    var page = parseIntOr(req.query['page'], 1);
-    models.Report.getByUser(req.session.passport.user.id, page).then(function (reports) {
-        var json = reports.rows.map(function (report) {
-            var data = _.pick(report, 'id', 'create_at', 'date_report', 'time_start', 'time_end', 'comment');
-            data.project = _.pick(report.Project, 'id', 'name');
-            return data;
+router
+    .get('/', function (req, res) {
+        var page = parseIntOr(req.query['page'], 1);
+        models.Report.getByUser(req.session.passport.user.id, page).then(function (reports) {
+            var json = reports.rows.map(function (report) {
+                var data = _.pick(report, 'id', 'create_at', 'date_report', 'time_start', 'time_end', 'comment');
+                data.project = _.pick(report.Project, 'id', 'name');
+                return data;
+            });
+            res.setHeader("TotalCount", reports.count);
+            res.setHeader("PerPage", models.Report.LIMIT);
+            res.status(json.length ? 200 : 204);
+            res.json(json);
         });
-        res.setHeader("TotalCount", reports.count);
-        res.setHeader("PerPage", models.Report.LIMIT);
-        res.status(json.length ? 200 : 204);
-        res.json(json);
+    })
+    .post('/', function (req, res) {
+        //console.log(req);
+        models.Report.add(req.session.passport.user.id, req.body).then(function (report) {
+            res.json(report);
+        });
     });
-});
+    
 
 module.exports = router;

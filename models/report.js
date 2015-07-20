@@ -15,6 +15,7 @@ module.exports = function(sequelize , DataTypes) {
     classMethods: {
       associate: function(models) {
         this.models = models;
+        /* todo sequelize new version research belongsTo method*/
         Report.belongsTo(models.Project, {foreignKey: 'project_id'/*, 'as': 'project'*/});
         //models.Project.belongsTo(Report/*, {foreignKey: 'project_id', 'as': 'project'}*/);
       },
@@ -38,6 +39,16 @@ module.exports = function(sequelize , DataTypes) {
               'name'
             ]
           }
+        });
+      },
+      /* todo: add project real id; get deal with time's variables*/
+      add: function (user_id, report) {
+        return Report.create({
+          user_id: user_id,
+          project_id: 21,
+          time_start: report.time_start,
+          time_end: report.time_end,
+          comment: report.comment
         });
       }
     },
