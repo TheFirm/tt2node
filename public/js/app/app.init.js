@@ -1,1 +1,1 @@
-angular.module('tt2', ['ui.bootstrap']);
+angular.module('tt2', [ 'ngSanitize', 'ui.bootstrap', 'ui.select']);

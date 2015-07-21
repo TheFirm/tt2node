@@ -12,10 +12,17 @@
             </thead>
             <tbody>
             <tr>
-                <!-- todo add models to all field-->
                 <td><span></span></td>
-                <td><input type="text"/></td>
-                <td><input type="text"/></td>
+                <td>
+                    <ui-select ng-model="project.id" theme="bootstrap" title="Choose a project">
+                        <ui-select-match placeholder="Choose a project">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices
+                                repeat="project.id as project in projects | filter: $select.search">
+                            <div ng-bind-html="project.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </td>
+                <td><input type="text" ng-model="date_report"/></td>
                 <td><input type="text" ng-model="time_start"/></td>
                 <td><input type="text" ng-model="time_end"/></td>
                 <td><input type="text" ng-model="comment"/></td>
