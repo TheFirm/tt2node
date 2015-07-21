@@ -25,7 +25,7 @@ app.set('views', './views');
 app.use(express.static('public'));
 app.use('/bower_components',  express.static('bower_components'));
 require("./passportInit");
-app.use('/', require('./controllers/'));
+require('./controllers/index.js')(app);
 //var passportConfig = require("./passportInit")(passport, models)
 //    , routes = require("./routes")(app, passport, models, express);
 
