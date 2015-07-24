@@ -4,8 +4,7 @@ var express = require('express'),
     session = require('express-session'),
     FileStore = require('session-file-store')(session),
     config = require("./config2/config").c,
-    models = require("./models")
-    ;
+    models = require("./models");
 
 var app = express();
 app.use(bodyParser.urlencoded({extended: true}));

@@ -3,14 +3,43 @@ var Project = require("./project");
 
 module.exports = function (sequelize, DataTypes) {
     var Report = sequelize.define('Report', {
-        id: DataTypes.INTEGER,
-        user_id: DataTypes.INTEGER,
-        project_id: DataTypes.INTEGER,
-        create_at: DataTypes.DATE,
-        date_report: DataTypes.DATE,
-        time_start: DataTypes.DATE,
-        time_end: DataTypes.DATE,
-        comment: DataTypes.TEXT
+        id: {
+            type: DataTypes.INTEGER
+        },
+        user_id: {
+            type: DataTypes.INTEGER
+        },
+        project_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        create_at: {
+            type: DataTypes.DATE
+        },
+        date_report: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            validate:  {
+                isDate: true
+            }
+        },
+        time_start: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            validate:  {
+                isDate: true
+            }
+        },
+        time_end: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            validate:  {
+                isDate: true
+            }
+        },
+        comment: {
+            type: DataTypes.TEXT
+        }
     }, {
         classMethods: {
             associate: function (models) {

@@ -30,6 +30,8 @@ router
         //console.log(req);
         models.Report.add(req.session.passport.user.id, req.body).then(function (report) {
             res.json(report);
+        }, function (addingError) {
+            res.status(400).json(addingError.errors)
         });
     });
     
