@@ -1,5 +1,6 @@
 'use strict';
-var Project = require("./project");
+var Project = require("./project"),
+    moment = require('moment');
 
 module.exports = function (sequelize, DataTypes) {
     var custom_errors = {
@@ -81,15 +82,54 @@ module.exports = function (sequelize, DataTypes) {
                 });
             },
             add: function (user_id, report) {
-                return Report.create({
-                    user_id: user_id,
-                    project_id: report.project_id,
-                    create_at: new Date(),
-                    date_report: report.date_report,
-                    time_start: report.time_start,
-                    time_end: report.time_end,
-                    comment: report.comment
+                var periodsMatchCount = 0;
+                return Report.findAndCount({
+                    where: {
+                        date_report: report.date_report,
+                        $or: [
+                            {
+                                time_start : {
+                                    $between: [report.time_start, report.time_end]
+                                }
+                            },
+                            {
+                                time_end : {
+                                    $between: [report.time_start, report.time_end]
+                                }
+                            },
+                            {
+                                time_start : {
+                                    $lte: report.time_start
+                                },
+                                time_end : {
+                                    $gte: report.time_end
+                                }
+
+                            }
+                        ]
+                    }
+                }).then(function (result) {
+                    periodsMatchCount = result.rows.length;
+                    if(periodsMatchCount){
+                        /* todo write normal error message*/
+                        throw new Error({
+                            errors : 'period match'
+                        })
+                    }
+                    else{
+                        return Report.create({
+                            user_id: user_id,
+                            project_id: report.project_id,
+                            create_at: new Date(),
+                            date_report: report.date_report,
+                            time_start: moment.utc(report.date_report + ' ' + report.time_start),
+                            time_end: moment.utc(report.date_report + ' ' + report.time_end),
+                            comment: report.comment
+                        });
+                    }
                 });
+
+
             }
         },
         tableName: 'reports',

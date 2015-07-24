@@ -16,6 +16,7 @@
     "faker": "^2.1.5",
     "jade": "^1.11.0",
     "migrate": "^0.2.1",
+    "moment": "^2.10.3",
     "mysql": "^2.7.0",
     "passport": "^0.2.2",
     "passport-google-oauth": "^0.2.0",

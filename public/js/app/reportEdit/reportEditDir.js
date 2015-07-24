@@ -12,8 +12,8 @@ angular.module('tt2').directive('ttReportEdit', function () {
                 $http.post('/api/report', {
                     project_id : $scope.project.id,
                     date_report : $scope.date_report,
-                    time_start: $scope.time_start && moment.utc($scope.date_report + ' ' + $scope.time_start),
-                    time_end: $scope.time_end && moment.utc($scope.date_report + ' ' + $scope.time_end),
+                    time_start: $scope.time_start /*&& moment.utc($scope.date_report + ' ' + $scope.time_start)*/,
+                    time_end: $scope.time_end /*&& moment.utc($scope.date_report + ' ' + $scope.time_end)*/,
                     period: $scope.period,
                     comment: $scope.comment
                 }).success(function (resp) {
