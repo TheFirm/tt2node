@@ -2,6 +2,10 @@
 var Project = require("./project");
 
 module.exports = function (sequelize, DataTypes) {
+    var custom_errors = {
+        date: 'Must be valid date'
+    };
+
     var Report = sequelize.define('Report', {
         id: {
             type: DataTypes.INTEGER
@@ -20,21 +24,27 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.DATE,
             allowNull: false,
             validate:  {
-                isDate: true
+                isDate: {
+                    msg: custom_errors.date
+                }
             }
         },
         time_start: {
             type: DataTypes.DATE,
             allowNull: false,
             validate:  {
-                isDate: true
+                isDate: {
+                    msg: custom_errors.date
+                }
             }
         },
         time_end: {
             type: DataTypes.DATE,
             allowNull: false,
             validate:  {
-                isDate: true
+                isDate: {
+                    msg: custom_errors.date
+                }
             }
         },
         comment: {
