@@ -44,4 +44,10 @@ describe("Report edit directive test", function () {
             expect(scope.time_start).toMatch(/^\d{2}:\d{2}(:\d{2})?$/);
         }));
     }));
+    it('should parse string period to milliseconds', function () {
+        scope.periodString = '1d 1h 10m 10s';
+        scope.parsePeriod();
+        var res = ( 3600*24 + 3600 + 600 + 10 ) * 1000;
+        expect(scope.period).toEqual( res);
+    })
 });
